@@ -465,9 +465,9 @@ GHC version-dependent stuff in it.
 
 > optsToInject :: Target -> [CLIFlags] -> String
 > optsToInject tgt cli
->       | OptGhcTarget `elem` cli   = "-fglasgow-exts -cpp"
->       | tgt == TargetArrayBased   = "-cpp"
->       | OptDebugParser `elem` cli = "-cpp"
+>       | OptGhcTarget `elem` cli   = "CPP, MagicHash"
+>       | tgt == TargetArrayBased   = "CPP"
+>       | OptDebugParser `elem` cli = "CPP"
 >       | otherwise                 = ""
 
 > importsToInject :: Target -> [CLIFlags] -> String

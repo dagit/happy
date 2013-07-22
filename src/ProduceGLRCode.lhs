@@ -142,7 +142,7 @@ the driver and data strs (large template).
 >       --   parser tail or in sem. rules
 
 >   content base_defs opts
->    = str ("{-# OPTIONS " ++ opts ++ " #-}")    .nl
+>    = str ("{-# LANGUAGE " ++ opts ++ " #-}")    .nl
 >    . str (unlines $ maybe [] fst header_parts) .nl
 >    . nl
 >    . str (comment "data")                      .nl .nl
@@ -190,7 +190,7 @@ the driver and data strs (large template).
 >   lib_content imps opts lib_text
 >    = let (pre,_drop_me : post) = break (== "fakeimport DATA") $ lines lib_text
 >      in
->      unlines [ "{-# OPTIONS " ++ opts ++ " #-}\n"
+>      unlines [ "{-# LANGUAGE " ++ opts ++ " #-}\n"
 >              , comment "driver" ++ "\n"
 >              , "module " ++ mod_name ++ "("
 >              , case lexer g of

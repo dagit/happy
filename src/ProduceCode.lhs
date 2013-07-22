@@ -88,7 +88,7 @@ Produce the complete output file.
 >    top_opts = nowarn_opts .
 >      case top_options of
 >          "" -> str ""
->          _  -> str (unwords [ "{-# OPTIONS"
+>          _  -> str (unwords [ "{-# LANGUAGE"
 >                             , top_options
 >                             , "#-}"
 >                             ]) . nl
