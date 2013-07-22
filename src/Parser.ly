@@ -33,6 +33,7 @@ The parser.
 >       spec_error      { TokenKW      TokSpecId_Error }
 >       spec_attribute  { TokenKW      TokSpecId_Attribute }
 >       spec_attributetype      { TokenKW      TokSpecId_Attributetype }
+>       spec_flags      { TokenKW      TokSpecId_Flags }
 >       code            { TokenInfo $$ TokCodeQuote }
 >       int             { TokenNum $$  TokNum }
 >       ":"             { TokenKW      TokColon }
@@ -120,6 +121,7 @@ The parser.
 >       | spec_error code               { TokenError $2 }
 >       | spec_attributetype code       { TokenAttributetype $2 }
 >       | spec_attribute id code        { TokenAttribute $2 $3 }
+>       | spec_flags code               { TokenFlags $2 }
 
 > optStart :: { Maybe String }
 >       : id                            { Just $1 }
