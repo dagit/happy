@@ -79,7 +79,7 @@ Read and parse the CLI arguments.
 >                       usageInfo (usageHeader prog) argInfo)
 
 >  where
->    runParserGen cli fl_name = do
+>    runParserGen cli' fl_name = do
 
 Open the file.
 
@@ -90,7 +90,13 @@ Parse, using bootstrapping parser.
 
 >       case coerceParser (runP ourParser file 1) of {
 >               FailP err -> die (fl_name ++ ':' : err);
->               OkP abssyn@(AbsSyn hd _ _ tl) -> do
+>               OkP abssyn@(AbsSyn hd ds _ tl) -> do
+
+Look for %option directives and add them to the cli' options
+when they conflict, cli' overrides.
+
+>       let cli = mergeOptions (getOptions ds) cli'
+>           mergeOptions _ x = x
 
 Mangle the syntax into something useful.
 
